@@ -8,9 +8,11 @@ void fnc_Eliminar_DB(){
 	"La base de datos se elimino exitosamente."
 	};
 	
-	// Cambiar el color de la consola
-	system(colores_menu[0][2]);
-	
+	#ifdef __WIN32
+		// Cambiar el color de la consola
+		system(colores_menu[0][2]);
+	#endif
+
 	// Aparece el archvio para
 	// actualizar la base de datos
 	sprintf(comando,comandos_attrib[0][0],_nombre_archivoDB);
@@ -28,7 +30,7 @@ void fnc_Eliminar_DB(){
 	
 	// Preguntar si desea eliminar la base de datos
 	fflush(stdin);
-	printf(aMensajes_e_bd[0][0]);
+	printf("%s \n",aMensajes_e_bd[0][0]);
 	scanf("%c",&_respuesta);
 	
 	// Si la respuesta es y o Y
@@ -51,7 +53,7 @@ void fnc_Eliminar_DB(){
 		fnc_Actualizar_DB();
 		
 		// Mostrar mensaje cuando la base de datos se elimina
-		printf(aMensajes_e_bd[0][1]);
+		printf("%s \n",aMensajes_e_bd[0][1]);
 		SALTO_LINEA; SALTO_LINEA;
 		PAUSAR;
 	}

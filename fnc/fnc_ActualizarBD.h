@@ -32,7 +32,7 @@ void fnc_Actualizar_DB(){
 			fputs(Datos, _mi_base_datos);
 		sprintf(Datos,"%s\n",_mis_productos[i]._Costo);
 			fputs(Datos, _mi_base_datos);
-		sprintf(Datos,"%s\n",_mis_productos[i]._Descripcion,_mis_productos[i].Identificador);
+		sprintf(Datos,"%s %i\n",_mis_productos[i]._Descripcion,_mis_productos[i].Identificador);
 			fputs(Datos, _mi_base_datos);
 			fputs("*****************************************\n", _mi_base_datos);
 	}
@@ -47,6 +47,6 @@ void fnc_Actualizar_DB(){
 	
 	// Mostrar mensaje cuando el proceso termine
 	SALTO_LINEA;
-	printf(aMensajes_a_bd);
+	printf("%s \n", aMensajes_a_bd);
 	SALTO_LINEA;
 }

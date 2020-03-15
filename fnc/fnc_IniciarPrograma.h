@@ -18,23 +18,26 @@ void fnc_Incializar_programa(){
 	// Preguntar si existe el archivo 
 	if( _mi_base_datos == NULL ){
 		
-		// Cambiar el color de la consola
-		system(colores_menu[0][2]);
-		
+
+		#ifdef __WIN32
+			// Cambiar el color de la consola
+			system(colores_menu[0][2]);
+		#endif
+
 		// Mostrar mensaje si no existe el archvio
-		printf(aMensajes_i_programa[0][0]);
+		printf("%s \n", aMensajes_i_programa[0][0]);
 		SALTO_LINEA;
 		
 		// Preguntar si desea crear el archivo
 		char _respuesta;
-		printf(aMensajes_i_programa[0][1]);
+		printf("%s \n",aMensajes_i_programa[0][1]);
 		scanf("%c",&_respuesta);
 		
 		// Si la respuesta es y o Y se crea el archivo
 		// si no termina el programa
 		if( _respuesta == 'y' ||  _respuesta == 'Y'){
 			SALTO_LINEA;
-			printf(aMensajes_i_programa[0][2]);
+			printf("%s \n",aMensajes_i_programa[0][2]);
 			fnc_Actualizar_DB();
 			SALTO_LINEA;
 			PAUSAR;

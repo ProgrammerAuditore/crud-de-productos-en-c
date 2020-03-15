@@ -43,7 +43,7 @@ void fnc_Modificar_productos(){
 	
 	if( _contador_productos == 0){
 		// Mostrar mensaje cuando no tienes productos registrados
-		TAB; printf(aMensajes_mp[0][1]); SALTO_LINEA;
+		TAB; printf("%s \n",aMensajes_mp[0][1]); SALTO_LINEA;
 		SALTO_LINEA;
 	}else{
 		// Mostrar todos los prodctos
@@ -71,7 +71,7 @@ if(_contador_productos != 0){
 		
 		// Capturar una opcion del menu
 		fflush(stdin);
-		 printf(aMensajes_mp[0][7]);
+		 printf("%s \n", aMensajes_mp[0][7]);
 		scanf("%c",&_opc_Modificar);
 		
 		// Si el total de productos es diferente de 0 y
@@ -109,9 +109,11 @@ case '1': // Cambiar nombre
 			
 			// Introducimos el nuevo nombre
 			char nuevo_nombre[50];
-			 printf(aMensajes_mp[0][9],nombre_anterior);
-			fflush(stdin);
-			gets(nuevo_nombre);		
+			printf("%s %s \n",aMensajes_mp[0][9],nombre_anterior);
+			fgets(nuevo_nombre, MAXCARACTERES, stdin);
+			SEPARARSTR(nuevo_nombre, nuevo_nombre, "\n");
+			BUFFERFREE;
+
 			
 			// Preguntar si el nombre tiene mas de 0 caracteres
 			// si no cambiar por un nombre ya definido
@@ -142,7 +144,7 @@ case '1': // Cambiar nombre
 			
 				// Mostrar mensaje cuando no se cambio el nombre
 				SALTO_LINEA;
-				 printf(aMensajes_mp[0][10], nuevo_nombre);
+				 printf("%s %s \n", aMensajes_mp[0][10], nuevo_nombre);
 				SALTO_LINEA;
 				PAUSAR;
 			}	
@@ -161,7 +163,7 @@ case '1': // Cambiar nombre
 					
 				// Mostrar mensaje cuando se cambia el nombre
 				SALTO_LINEA;
-				 printf(aMensajes_mp[0][11],_Id_producto);
+				 printf("%s %i \n", aMensajes_mp[0][11],_Id_producto);
 				fnc_Actualizar_DB();
 				PAUSAR;
 			}
@@ -172,9 +174,10 @@ case '2':
 {
 	// Capturar la nueva descripcion del producto
 	char xDescripcion[100];
-	 printf(aMensajes_mp[0][12],_mis_productos[_Id_producto]._Nombre);
-	fflush(stdin);
-	gets(xDescripcion);
+	printf("%s %s \n",aMensajes_mp[0][12],_mis_productos[_Id_producto]._Nombre);
+	fgets(xDescripcion, MAXCARACTERES, stdin);
+	SEPARARSTR(xDescripcion, xDescripcion, "\n");
+	BUFFERFREE;
 	
 	// Calcular el tama�o de la descripcion
 	if( strlen(xDescripcion) > 0){
@@ -187,7 +190,7 @@ case '2':
 	
 	// Mostrar mensaje cuando cambia la descripcion del producto
 	SALTO_LINEA;
-	 printf(aMensajes_mp[0][13],_Id_producto);
+	 printf("%s %i \n", aMensajes_mp[0][13],_Id_producto);
 	// Actualizamos la base de datos
 	fnc_Actualizar_DB();
 	PAUSAR;	
@@ -198,9 +201,9 @@ case '3':
 {
 	// Capturar el nuevo costo del producto
 	float _fCosto = 0.00; char _cCosto[50];
-	fflush(stdin);
-	printf(aMensajes_mp[0][14],_mis_productos[_Id_producto]._Nombre,_mis_productos[_Id_producto]._Costo);
+	//printf"%s %s %i \n",(aMensajes_mp[0][14],_mis_productos[_Id_producto]._Nombre,_mis_productos[_Id_producto]._Costo);
 	scanf("%f",&_fCosto);
+	BUFFERFREE;
 	
 	// Convertir el float a string o caracteres
 	sprintf(_cCosto,"%.2f",_fCosto);
@@ -210,7 +213,7 @@ case '3':
 		
 	// Mostrar mensaje cuando cambia el costo del productos
 	SALTO_LINEA;
-	printf(aMensajes_mp[0][15],_Id_producto);
+	printf("%s %i \n", aMensajes_mp[0][15],_Id_producto);
 	fnc_Actualizar_DB();
 	PAUSAR;
 	}break;
@@ -227,7 +230,7 @@ case '4':
 	
 	// Mostramos el mensaje cuando un producto se elimina
 	SALTO_LINEA;
-	 printf(aMensajes_mp[0][16],_Id_producto);	
+	 printf("%s %i \n",aMensajes_mp[0][16],_Id_producto);	
 	// Actualizamos la base de datos
 	fnc_Actualizar_DB();	
 	PAUSAR;
@@ -239,7 +242,7 @@ case '4':
 				// Mostrar mensaje cuando el producto 
 				// no exista en la base de datos
 				SALTO_LINEA;
-				 printf(aMensajes_mp[0][17]);
+				printf("%s \n",aMensajes_mp[0][17]);
 				SALTO_LINEA;
 				PAUSAR;
 }

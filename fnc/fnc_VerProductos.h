@@ -5,9 +5,11 @@ void fnc_Ver_productos(){
 	"VER TODOS LOS PRODUCTOS"
 	};
 	
-	// Cambiar el color de la consola
-	system(colores_menu[0][1]);
-	
+	#ifdef __WIN32
+		// Cambiar el color de la consola
+		system(colores_menu[0][1]);
+	#endif
+
 	// Menu de ver productos
 	BORRAR_PANTALLA
 	SEPARADOR;

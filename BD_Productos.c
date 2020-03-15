@@ -2,26 +2,26 @@
 I. Crear una base de datos de productos sin repetion de ellas y almacenarlo en un archivo .txt
 Nota: Todo el programa debe ser con char de preferencia 
 Objetivo: Aprender a usar las cadenas de texto en C
+// Si he modificado este proyecto significa que, ya he aprendido.
 */
 #include "Run.h"
 
 // gcc BD_Productos.c -c -I"./src/" -I"./fnc/" -std=c99 && gcc BD_Productos.o -o BD_Productos 
 
-
-/**********************************************
- 				PRINCIPAL MAIN 
-*********************************************/
 int main(){	
 	
 	// Menu principal
 	do{
 		
+		#ifdef __WIN32
+			system(colores_menu[0][0]);
+		#endif
+
 		// Bucamos cambios a la base de datos
 		fnc_Incializar_programa();
 		
 		// Mostrar menu principal
 		BORRAR_PANTALLA;
-		system(colores_menu[0][0]);
 		TAB; printf(aMensajes_MenuPrincipal[0][0], _contador_productos); SALTO_LINEA;
 		SEPARADOR;
 		TAB; printf(aMensajes_MenuPrincipal[0][1], _contador_productos); SALTO_LINEA;
@@ -37,7 +37,7 @@ int main(){
 		SEPARADOR;
 		
 		// Capturar una opcion del menu
-		printf(aMensajes_MenuPrincipal[0][8]);
+		printf("%s",aMensajes_MenuPrincipal[0][8]);
 		scanf("\t\t %c",&opc_Principal);
 		
 		// Seleccionamos la opcion elegida
@@ -51,7 +51,7 @@ int main(){
 		}
 		
 		// Liberar teclado
-		fflush(stdin);
+		BUFFERFREE;
 		
 		// Termina el programa cuando el usuario
 		// introduce el 0
@@ -60,7 +60,7 @@ int main(){
 	// Mostrar mensaje cuando sale del programa
 	BORRAR_PANTALLA;
 	SALTO_LINEA;
-		TAB; printf(aMensajes_MenuPrincipal[0][9]);
+		TAB; printf("%s \n",aMensajes_MenuPrincipal[0][9]);
 	SALTO_LINEA;
-	PAUSAR;
+	BUFFERFREE;
 }

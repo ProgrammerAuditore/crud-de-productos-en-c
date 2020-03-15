@@ -24,10 +24,11 @@ void fnc_Crear_producto(){
 	SALTO_LINEA;
 	
 	// Capturar el nombre
-	fflush(stdin);
 	char _xNombre[50];
-	printf(aMensajes_cp[0][2]);
-	gets(_xNombre);	
+	printf("%s", aMensajes_cp[0][2]);
+	fgets(_xNombre, MAXCARACTERES, stdin);
+	SEPARARSTR(_xNombre, _xNombre, "\n");
+	BUFFERFREE;
 	
 	// Esto no se ejecuta cuando el usaurio introduce un 0
 	if( *_xNombre != '0'){
@@ -75,10 +76,11 @@ void fnc_Crear_producto(){
 			
 			// Captura la descripcion del producto
 			SALTO_LINEA;
-			fflush(stdin);
 			char _xDescripcion[255];
-			printf(aMensajes_cp[0][3]);
-			gets(_xDescripcion);
+			printf("%s", aMensajes_cp[0][3]);
+			fgets(_xDescripcion, MAXCARACTERES, stdin);
+			SEPARARSTR(_xDescripcion, _xDescripcion, "\n");
+			BUFFERFREE;
 			
 			// Preguntar si la descripcion del producto
 			// tiene mayor que 0 caracteres
@@ -92,10 +94,10 @@ void fnc_Crear_producto(){
 			
 			// Capturar el costo del producto
 			SALTO_LINEA;
-			fflush(stdin);
 			float _fC = 0.00; char _cC[50];
-			printf(aMensajes_cp[0][4]);
+			printf("%s", aMensajes_cp[0][4]);
 			scanf("%f",&_fC);
+			BUFFERFREE;
 			
 			// Convertimos el float a string o caracteres
 			sprintf(_cC, "%0.2f", _fC);
@@ -110,13 +112,13 @@ void fnc_Crear_producto(){
 				
 			// Mostar mensaje cuando se crea un nuevo producto
 			SALTO_LINEA; SALTO_LINEA;
-			printf(aMensajes_cp[0][5],_mis_productos[_contador_productos].Identificador); 
+			printf(aMensajes_cp[0][5], _mis_productos[_contador_productos].Identificador); 
 			fnc_Actualizar_DB();
-			PAUSAR;
+			BUFFERFREE;
 		}else{
 			
 			// Mostrar mensaje cuando no puede crear el producto
-			SALTO_LINEA; printf(aMensajes_cp[0][6]);
+			SALTO_LINEA; printf("%s \n", aMensajes_cp[0][6]);
 			SALTO_LINEA;
 			PAUSAR;
 			

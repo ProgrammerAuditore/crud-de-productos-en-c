@@ -8,9 +8,11 @@ void fnc_Buscar_productos(){
 	"\nLo siento, %s no esta registrado. \n"
 	};
 	
-	// Cambiar el color de la consola
-	system(colores_menu[0][3]);
-	
+	#ifdef __WIN32
+		// Cambiar el color de la consola
+		system(colores_menu[0][3]);
+	#endif
+
 	// Menu de buscar productos
 	BORRAR_PANTALLA;
 	TAB; printf("%s",aMensajes_bp[0][0]); SALTO_LINEA; // Titulo
@@ -22,9 +24,10 @@ void fnc_Buscar_productos(){
 	int i, _resultado;
 	
 	// Capturamos el producto a buscar
-	fflush(stdin);
-	printf(aMensajes_bp[0][2]);
-	gets(xBuscar);
+	printf("%s \n",aMensajes_bp[0][2]);
+	fgets(xBuscar, MAXCARACTERES, stdin);
+	SEPARARSTR(xBuscar, xBuscar, "\n");
+	BUFFERFREE;
 	
 	if( *xBuscar != '0'){
 		
@@ -49,7 +52,7 @@ void fnc_Buscar_productos(){
 		
 		// Mostrar mensaje cuando no encuentra el producto
 		if( _resultado == 0){
-			printf(aMensajes_bp[0][3],xBuscar);
+			printf("%s %s \n", aMensajes_bp[0][3],xBuscar);
 		}
 		
 		PAUSAR_MSG;
